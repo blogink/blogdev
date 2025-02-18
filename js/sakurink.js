@@ -212,6 +212,7 @@ var tasseles = {
 
 // 调用
 tasseles.changeMusicBg(false);
+
 /* 插入按钮方式2 */
 /*
 window.addEventListener("pjax:complete", spElementsAddon);

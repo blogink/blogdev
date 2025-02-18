@@ -71,6 +71,7 @@
   --tasseles-shadow-nav: 0 5px 12px -5px rgba(102, 68, 68, 0.05);
   --tasseles-card-bg: var(--tasseles-white);
   --tasseles-card-bg-op: var(--tasseles-black-op);
+  --tasseles-card-bg-trans: rgba(255, 255, 255, 0.8);
   --tasseles-card-bg-none: #00000000;
   --tasseles-card-border: #e3e8f7;
   --tasseles-shadow-lightblack: 0 5px 12px -5px rgba(102, 68, 68, 0);
@@ -110,6 +111,7 @@
   --tasseles-shadow-nav: 0 5px 20px 0px rgba(28, 28, 28, 0.4);
   --tasseles-card-bg: #1d1b26;
   --tasseles-card-bg-op: var(--tasseles-black-op);
+  --tasseles-card-bg-trans: rgba(29, 27, 38, 0.8);
   --tasseles-card-bg-none: #1d1b2600;
   --tasseles-shadow-lightblack: 0 5px 12px -5px rgba(102, 68, 68, 0);
   --tasseles-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0);
@@ -1310,9 +1312,9 @@ audio::-webkit-media-controls-enclosure {
   display: none;
   -webkit-filter: blur(60px);
   filter: blur(60px);
-  opacity: 0.6;
+  opacity: 0.3;
   position: fixed;
-  z-index: -99;
+  z-index: -999;
   background-attachment: local;
   background-position: center center;
   background-size: cover;
@@ -1327,6 +1329,11 @@ audio::-webkit-media-controls-enclosure {
   opacity: 0.4;
 }
 
+/*body:has(#anMusic-page) {
+  background: var(--tasseles-black-trans);
+}
+*/
+
 body:has(#anMusic-page) #an_music_bg {
   display: block;
 }
@@ -1340,7 +1347,7 @@ body:has(#anMusic-page) #an_music_bg {
 }
 
 body:has(#anMusic-page) #web_bg {
-  display: none;
+  display: none !important;
 }
 body:has(#anMusic-page) #nav {
   background: transparent !important;
@@ -1491,8 +1498,8 @@ body:has(#anMusic-page) #footer {
 }
 
 #anMusic-page .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played .aplayer-thumb {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     margin-top: -4px;
     -webkit-transform: none;
     -moz-transform: none;
@@ -1723,9 +1730,6 @@ body:has(#anMusic-page) .aplayer .aplayer-info .aplayer-controller .aplayer-time
     left: 10px;
     width: calc(100% - 20px);
     height: 90px;
-    background: var(--tasseles-white-op);
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
     border-radius: 10px 10px 0 0;
   }
 
@@ -1785,8 +1789,6 @@ body:has(#anMusic-page) .aplayer .aplayer-info .aplayer-controller .aplayer-time
     width: 32px;
     height: 32px;
     background: var(--tasseles-white-op);
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
     border-radius: 50%;
   }
   #anMusic-page .aplayer-volume-bar-wrap {
