@@ -135,11 +135,129 @@ function rightsideAddon(){
 }
 rightsideAddon();
 */
+function cssConModuleOn() {
+
+  const supportsHas = CSS.supports('selector(:has(*))')
+
+  // 若浏览器不支持:has()
+  if (!supportsHas) {
+
+    console.log("您的浏览器不支持 :has()，尝试备用方案");
+
+    const anMusicPage = document.getElementById('anMusic-page');
+
+    if (anMusicPage) {
+
+      console.log("MusicPage 已加载，启用兼容方案");
+
+      const page = document.querySelector("#page");
+      if (page) {
+      console.log("实际执行");
+        // 对 #page 进行操作
+        page.style.border = "0";
+        page.style.boxShadow = "none !important";
+        page.style.padding = "0 !important";
+        page.style.background = "transparent !important";
+      }
+
+      const anMusicBg = document.getElementById("an_music_bg");
+      if (anMusicBg) {
+        anMusicBg.style.display = "block";
+      }
+
+      // 对 #web_bg 进行操作
+      const webBg = document.querySelector("#web_bg");
+      if (webBg) {
+          webBg.style.display = "none !important";
+      }
+
+      // 对 #nav 进行操作
+      const nav = document.querySelector("#nav");
+      if (nav) {
+          nav.style.background = "transparent !important";
+      }
+
+      // 对 #footer 进行操作
+      const footer = document.querySelector("#footer");
+      if (footer) {
+          footer.style.display = "none";
+      }
+
+      // 对 .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon.aplayer-icon-loop 进行操作
+      const aplayerIconLoop = document.querySelector(".aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon.aplayer-icon-loop");
+      if (aplayerIconLoop) {
+          aplayerIconLoop.style.marginRight = "15px";
+      }
+
+      // 媒体查询：如果屏幕宽度小于768px，对 #rightside 进行操作
+      const rightSide = document.querySelector("#rightside");
+      if (window.matchMedia("(max-width: 768px)").matches && rightSide) {
+          rightSide.style.display = "none";
+      }
+
+    }
+  } else {
+     console.log("【加载兼容】您的浏览器支持 :has()，无需使用备用方案");
+  }
+}
+
+function cssConModuleOff() {
+
+  const supportsHas = CSS.supports('selector(:has(*))')
+
+  // 若浏览器不支持:has()
+  if (!supportsHas) {
+
+    console.log("当前非 MusicPage，兼容方案恢复");
+
+    const page = document.querySelector("#page");
+    if (page) {
+      page.style.border = "";
+      page.style.boxShadow = "";
+      page.style.padding = "";
+      page.style.background = "";
+    }
+
+    const anMusicBg = document.querySelector("#an_music_bg");
+    if (anMusicBg) {
+        anMusicBg.style.display = "";
+    }
+
+    const webBg = document.querySelector("#web_bg");
+    if (webBg) {
+        webBg.style.display = "";
+    }
+
+    const nav = document.querySelector("#nav");
+    if (nav) {
+        nav.style.background = "";
+    }
+
+    const footer = document.querySelector("#footer");
+    if (footer) {
+        footer.style.display = "";
+    }
+
+    const aplayerIconLoop = document.querySelector(".aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon.aplayer-icon-loop");
+    if (aplayerIconLoop) {
+        aplayerIconLoop.style.marginRight = "";
+    }
+
+    const rightSide = document.querySelector("#rightside");
+    if (window.matchMedia("(max-width: 768px)").matches && rightSide) {
+        rightSide.style.display = "";
+    }
+  } else {
+     console.log("【恢复】您的浏览器支持 :has()，无需使用备用方案");
+  }
+}
 
 var tasseles = {
   // 音乐节目切换背景
   changeMusicBg: function (isChangeBg = true) {
     if (window.location.pathname !== "/music/") {
+      console.log("非 music 页");
+      cssConModuleOff();
       return;
     }
 
@@ -173,6 +291,7 @@ var tasseles = {
     } else {
       // 第一次进入，绑定事件，改背景
       const observer = new MutationObserver(() => {
+        cssConModuleOn();
         const musiccover = document.querySelector("#anMusic-page .aplayer-pic");
         // 确保player加载完成
         console.info("已加载",anMusicBg);
@@ -200,6 +319,7 @@ var tasseles = {
     }
   },
   addEventListenerChangeMusicBg: function () {
+    console.log("检测到 music 页");
     const anMusicPage = document.getElementById("anMusic-page");
     const aplayerIconMenu = anMusicPage.querySelector(".aplayer-info .aplayer-time .aplayer-icon-menu");
 
