@@ -155,9 +155,9 @@ function cssConModuleOn() {
       console.log("实际执行");
         // 对 #page 进行操作
         page.style.border = "0";
-        page.style.boxShadow = "none !important";
-        page.style.padding = "0 !important";
-        page.style.background = "transparent !important";
+        page.style.boxShadow = "none";
+        page.style.padding = "0";
+        page.style.background = "transparent";
       }
 
       const anMusicBg = document.getElementById("an_music_bg");
@@ -168,31 +168,31 @@ function cssConModuleOn() {
       // 对 #web_bg 进行操作
       const webBg = document.querySelector("#web_bg");
       if (webBg) {
-          webBg.style.display = "none !important";
+        webBg.style.display = "none";
       }
 
       // 对 #nav 进行操作
       const nav = document.querySelector("#nav");
       if (nav) {
-          nav.style.background = "transparent !important";
+        nav.style.background = "transparent";
       }
 
       // 对 #footer 进行操作
       const footer = document.querySelector("#footer");
       if (footer) {
-          footer.style.display = "none";
+        footer.style.display = "none";
       }
 
       // 对 .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon.aplayer-icon-loop 进行操作
       const aplayerIconLoop = document.querySelector(".aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon.aplayer-icon-loop");
       if (aplayerIconLoop) {
-          aplayerIconLoop.style.marginRight = "15px";
+        aplayerIconLoop.style.marginRight = "15px";
       }
 
       // 媒体查询：如果屏幕宽度小于768px，对 #rightside 进行操作
       const rightSide = document.querySelector("#rightside");
       if (window.matchMedia("(max-width: 768px)").matches && rightSide) {
-          rightSide.style.display = "none";
+        rightSide.style.display = "none";
       }
 
     }
