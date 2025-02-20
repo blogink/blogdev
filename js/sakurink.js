@@ -178,6 +178,12 @@ function cssConModuleOn() {
         nav.style.boxShadow = "none";
       }
 
+      // 对 #content-inner 进行操作
+      const contentInner = document.querySelector("#content-inner");
+      if (contentInner) {
+        contentInner.style.padding = "0";
+      }
+
       // 对 #footer 进行操作
       const footer = document.querySelector("#footer");
       if (footer) {
@@ -221,33 +227,38 @@ function cssConModuleOff() {
 
     const srMusicBg = document.querySelector("#srMusic_bg");
     if (srMusicBg) {
-        srMusicBg.style.display = "";
+      srMusicBg.style.display = "";
     }
 
     const webBg = document.querySelector("#web_bg");
     if (webBg) {
-        webBg.style.display = "";
+      webBg.style.display = "";
     }
 
     const nav = document.querySelector("#nav");
     if (nav) {
-        nav.style.background = "";
-        nav.style.boxShadow = "";
+      nav.style.background = "";
+      nav.style.boxShadow = "";
+    }
+
+    const contentInner = document.querySelector("#content-inner");
+    if (contentInner) {
+      contentInner.style.padding = "";
     }
 
     const footer = document.querySelector("#footer");
     if (footer) {
-        footer.style.display = "";
+      footer.style.display = "";
     }
 
     const aplayerIconLoop = document.querySelector(".aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon.aplayer-icon-loop");
     if (aplayerIconLoop) {
-        aplayerIconLoop.style.marginRight = "";
+      aplayerIconLoop.style.marginRight = "";
     }
 
     const rightSide = document.querySelector("#rightside");
     if (window.matchMedia("(max-width: 768px)").matches && rightSide) {
-        rightSide.style.display = "";
+      rightSide.style.display = "";
     }
   } else {
      console.log("【恢复】您的浏览器支持 :has()，无需使用备用方案");

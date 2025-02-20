@@ -231,10 +231,10 @@ html {
   overflow-y: overlay;
 }*/
 
-/* 内容区域背景优化 */
+/* 内容区域背景优化
 #body-wrap > #content-inner {
   padding: 40px auto !important;
-}
+} */
 
 /* 评论区侧栏弹出：https://akilar.top/posts/397b8b90/ */
 /*
@@ -1308,6 +1308,9 @@ audio::-webkit-media-controls-enclosure {
   padding: 0 !important;
   background: transparent !important;
 }
+#content-inner:has(#srMusic-page) {
+  padding: 0 !important;
+}
 #srMusic_bg {
   display: none;
   -webkit-filter: blur(60px);
@@ -1344,7 +1347,6 @@ body:has(#srMusic-page) #srMusic_bg {
   background: transparent !important;
   border: none;
   box-shadow: none;
-  top: -30px;
 }
 
 body:has(#srMusic-page) #web_bg {
@@ -1590,7 +1592,7 @@ body:has(#srMusic-page) #footer {
 }
 #srMusic-page ol {
   /*max-height: 65vh !important;*/
-  max-height: calc(100vh - 200px) !important;
+  max-height: calc(100vh - 190px) !important;
   padding-right: 25px;
 }
 #srMusic-page ol > li {
