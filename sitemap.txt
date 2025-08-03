@@ -1,7 +1,9 @@
+https://blogdev.sakurink.eu.org/message/index.html
+https://blogdev.sakurink.eu.org/cookies/index.html
+https://blogdev.sakurink.eu.org/license/index.html
 https://blogdev.sakurink.eu.org/music/index.html
 https://blogdev.sakurink.eu.org/sub/index.html
 https://blogdev.sakurink.eu.org/update/index.html
-https://blogdev.sakurink.eu.org/license/index.html
 https://blogdev.sakurink.eu.org/cc/index.html
 https://blogdev.sakurink.eu.org/about/index.html
 https://blogdev.sakurink.eu.org/essay/index.html
