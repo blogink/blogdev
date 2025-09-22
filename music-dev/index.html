@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>桌面端 Meting API 音乐播放器（修复CORS版本）</title>
+<link rel="shortcut icon" href="./favicon.png">
+<title>音乐播放器（测试版）</title>
 <style>
 :root {
     --bg: #0f1720;
@@ -661,6 +662,30 @@ body {
     align-items: center;
     margin-top: 8px
 }
+
+
+/* 关于 */
+.about-section {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+    flex: 1;
+    min-height: 200px
+}
+.about-container {
+    background: rgba(255,255,255,0.02);
+    overflow-y: auto;
+    position: fixed;
+    padding: 12px;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 60px);
+    width: 100%;
+}
+
   /* 歌单区域 */
 .playlist-section {
     display: flex;
@@ -1183,7 +1208,7 @@ select option:checked {
         <div class="small-text">基于 Meting API 开发</div>
     </div>
     <div class="section-header">
-      <div class="small-text">v5.0 整合版（修复CORS）</div>
+      <div class="small-text">V 0.5.2</div>
     </div>
 </div>
 <div class="app-container">
@@ -1304,9 +1329,16 @@ select option:checked {
           <button id="clearPlaylistBtn" class="control-btn">清空歌单</button>
         </div>
       </div>
-      <!-- API控制区域 -->
+      <!-- 关于页面 -->
       <div id="controlTab-about" class="api-section controlTab-panel">
-          
+        <div class="about-section">
+          <div class="about-container">
+            <div style="text-align: center;">音乐播放器（测试版）</div>
+            <p>基于 Meting API 开发，支持 Meting API 格式数据解析。已初步实现基本功能。</p>
+            <p>开发中，不代表最终品质。</p>
+
+          </div>
+        </div>
       </div>
       
     </div>
