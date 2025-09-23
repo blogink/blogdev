@@ -1414,8 +1414,37 @@ select option:checked {
 
 <!-- 通知提示元素 -->
 <div id="playerNotice"></div>
+<script>
+function setLyricsContainerHeight() {
+    const container = document.querySelector('.lyrics-container');
+    if (!container) return;
 
-<script type="text/javascript" src="./config.js"></script>
+    // 使用 window.innerHeight 获取真实的可视窗口高度
+    const navbarHeight = 60;     // .app-nav 高度
+    const playerMainMinHeight = 110; // .player-main 最小占用高度（PC 和 mobile 不同）
+    const paddingOrGap = 20;     // 间距
+
+    // 计算可用高度
+    let availableHeight = window.innerHeight - navbarHeight - playerMainMinHeight - paddingOrGap;
+
+    // 在小屏横向布局下，可能还需要减去 .player-main 的实际高度（如果是固定高）
+    if (window.innerWidth <= 499) {
+        availableHeight -= 60; // 减去 .player-main 在 media query 中设的 max-height: 60px
+    }
+
+    // 设置最小保护高度
+    container.style.height = `${Math.max(availableHeight, 160)}px`;
+}
+
+// 初始化 + resize 监听
+window.addEventListener('load', setLyricsContainerHeight);
+window.addEventListener('resize', setLyricsContainerHeight);
+window.addEventListener('orientationchange', () => {
+    // 延迟执行，确保尺寸稳定
+    setTimeout(setLyricsContainerHeight, 300);
+});
+</script>
+<script type="text/javascript" src="https://apis0-meting.lolic.dpdns.org/others/player-conf/config.js"></script>
 <script type="text/javascript" src="./player.js"></script>
 
 <script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
