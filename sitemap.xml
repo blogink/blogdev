@@ -166,7 +166,7 @@
 
   <url>
     <loc>https://blogdev.sakurink.eu.org/</loc>
-    <lastmod>2025-10-31</lastmod>
+    <lastmod>2025-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -174,7 +174,7 @@
   
   <url>
     <loc>https://blogdev.sakurink.eu.org/tags/tag1/</loc>
-    <lastmod>2025-10-31</lastmod>
+    <lastmod>2025-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
