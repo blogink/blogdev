@@ -998,10 +998,10 @@ function contentInnerBgOp100() {
     // 更新或添加样式
     styleTag.innerHTML = `
         #body-wrap > #content-inner {
-            left: !important;
+            background-color: rgba(255,255,255,1) !important;
         }
         [data-theme="dark"] #body-wrap > #content-inner {
-            transform: !important
+            background-color: rgba(10,10,10,1) !important;
         }
     `;
 }
