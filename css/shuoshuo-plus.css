@@ -1,0 +1,59 @@
+/* 说说音乐播放器容器
+#article-container .shuoshuo-music {
+  width: 100%;
+  height: 90px;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: var(--style-border-always);
+  background: var(--tasseles-secondbg);
+}
+#article-container .shuoshuo-music .aplayer {
+  margin: 0;
+}
+#article-container .shuoshuo-music .aplayer.aplayer-withlrc .aplayer-pic {
+  height: 82px;
+  width: 82px;
+  margin: 4px;
+  border-radius: 4px;
+}
+#article-container .shuoshuo-music .aplayer-info {
+  padding: 5px 7px 0;
+}
+#article-container .shuoshuo-music .aplayer .aplayer-info .aplayer-music {
+  height: 23px;
+}
+#article-container .shuoshuo-music .aplayer .aplayer-info .aplayer-music .aplayer-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--tasseles-fontcolor);
+}
+#article-container .shuoshuo-music .aplayer .aplayer-info .aplayer-controller {
+  align-items: center;
+}
+#article-container .shuoshuo-music .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap {
+  padding: 0;
+}
+#article-container .shuoshuo-music .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar {
+  background: var(--tasseles-gray);
+  height: 8px;
+  border-radius: 12px;
+  transition: 0.3s;
+  overflow: hidden;
+}
+#article-container .shuoshuo-music .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded,
+#article-container .shuoshuo-music .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+  height: 100%;
+  border-radius: 12px;
+}
+#article-container .shuoshuo-music .aplayer .aplayer-info .aplayer-controller .aplayer-time {
+  position: initial;
+}
+[data-theme="dark"] #article-container .shuoshuo-music .aplayer {
+  background: var(--tasseles-card-bg);
+  color: var(--tasseles-fontcolor);
+}
+#article-container .shuoshuo-music .aplayer .aplayer-lrc p {
+  color: var(--tasseles-fontcolor);
+} */

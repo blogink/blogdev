@@ -1,1 +1,113 @@
-var percentFlag=!1;function essayScroll(){const e=(document.documentElement.scrollTop||window.pageYOffset)%document.documentElement.clientHeight;result<=99||(result=99),!percentFlag&&e+100>=document.documentElement.clientHeight&&document.querySelector("#waterfall")?setTimeout(()=>{waterfall("#waterfall")},500):setTimeout(()=>{document.querySelector("#waterfall")&&waterfall("#waterfall")},500);const t=window.scrollY+document.documentElement.clientHeight;let n=document.getElementById("post-comment")||document.getElementById("footer");(n.offsetTop+n.offsetHeight/2<t||90<result)&&(percentFlag=!0)}function replaceAll(e,t,n){return e.split(t).join(n)}var blogessay={diffDate:function(e,t=!1){const n=new Date,l=new Date(e),o=n.getTime()-l.getTime(),a=36e5,c=24*a,s=30*c;let r;const u=GLOBAL_CONFIG.date_suffix||{},i=u.day||"天前",m=u.hour||"小时前",d=u.hour||"分钟前";if(t){const e=o/c,t=o/a,n=o/6e4;r=o/s>=1?l.toLocaleDateString().replace(/\//g,"-"):e>=1?parseInt(e)+" "+i:t>=1?parseInt(t)+" "+m:n>=1?parseInt(n)+" "+d:u.just}else r=parseInt(o/c);return r},changeTimeInEssay:function(){document.querySelector("#bber")&&document.querySelectorAll("#bber time").forEach(function(e){var t=e,n=t.getAttribute("datetime");t.innerText=blogessay.diffDate(n,!0),t.style.display="inline"})},reflashEssayWaterFall:function(){document.querySelector("#waterfall")&&setTimeout(function(){waterfall("#waterfall"),document.getElementById("waterfall").classList.add("show")},500)},commentText:function(e){"undefined"!=e&&"null"!=e||(e="好棒！");var t=document.getElementsByClassName("el-textarea__inner")[0],n=document.createEvent("HTMLEvents");if(t){n.initEvent("input",!0,!0);var l=replaceAll(e,"\n","\n> ");t.value="> "+l+"\n\n",t.dispatchEvent(n);var o=document.querySelector("#post-comment").offsetTop;window.scrollTo(0,o-80),t.focus(),t.setSelectionRange(-1,-1),document.getElementById("comment-tips")&&document.getElementById("comment-tips").classList.add("show")}}};blogessay.changeTimeInEssay(),blogessay.reflashEssayWaterFall();
+var percentFlag = false;
+let resizeTimer = null;
+
+function essayScroll() {
+  const wf = document.querySelector('#waterfall');
+  if (!wf) return;
+
+  const scrollY = window.scrollY || document.documentElement.scrollTop;
+  const clientH = document.documentElement.clientHeight;
+  const pageH = document.documentElement.scrollHeight;
+
+  // 触发瀑布流排版
+  if (scrollY + clientH >= pageH - 100 && !percentFlag) {
+    percentFlag = true;
+    waterfall('#waterfall');
+  }
+}
+
+// 窗口大小改变时防抖重排
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (document.querySelector('#waterfall')) waterfall('#waterfall');
+  }, 200);
+});
+
+// 初始化执行
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => waterfall('#waterfall'), 100);
+});
+function replaceAll(e, n, t) {
+  return e.split(n).join(t);
+}
+var blogessay = {
+  diffDate: function (d, more = false) {
+    const dateNow = new Date();
+    const datePost = new Date(d);
+    const dateDiff = dateNow.getTime() - datePost.getTime();
+    const minute = 1000 * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+    const month = day * 30;
+
+    let result;
+    // Check if the suffix object and required properties exist
+    const suffix = GLOBAL_CONFIG.date_suffix || {};
+    const daySuffix = suffix.day || '天前';
+    const hourSuffix = suffix.hour || '小时前';
+    const minSuffix = suffix.hour || '分钟前';
+    
+    if (more) {
+      const monthCount = dateDiff / month;
+      const dayCount = dateDiff / day;
+      const hourCount = dateDiff / hour;
+      const minuteCount = dateDiff / minute;
+
+      if (monthCount >= 1) {
+        result = datePost.toLocaleDateString().replace(/\//g, "-");
+      } else if (dayCount >= 1) {
+        result = parseInt(dayCount) + " " + daySuffix;
+      } else if (hourCount >= 1) {
+        result = parseInt(hourCount) + " " + hourSuffix;
+      } else if (minuteCount >= 1) {
+        result = parseInt(minuteCount) + " " + minSuffix;
+      } else {
+        result = suffix.just;
+      }
+    } else {
+      result = parseInt(dateDiff / day);
+    }
+    return result;
+  },
+  changeTimeInEssay: function () {
+    document.querySelector("#bber") &&
+      document.querySelectorAll("#bber time").forEach(function (e) {
+        var t = e,
+          datetime = t.getAttribute("datetime");
+        (t.innerText = blogessay.diffDate(datetime, true)), (t.style.display = "inline");
+      });
+  },
+  reflashEssayWaterFall: function () {
+    document.querySelector("#waterfall") &&
+      setTimeout(function () {
+        waterfall("#waterfall");
+        document.getElementById("waterfall").classList.add("show");
+      }, 500);
+  },
+  commentText: function (e) {
+    if (e === undefined || e === null || e === 'undefined' || e === 'null') e = '好棒！';
+    // 修复原代码中类名末尾多余的空格
+    const textarea = document.querySelector('.el-textarea__inner');
+    if (!textarea) return;
+
+    // 将换行符统一转为 Markdown 引用格式
+    const formattedText = `> ${e.replace(/\n/g, '\n> ')}\n\n`;
+    
+    textarea.value = formattedText + textarea.value;
+    // 触发 input 事件以适配现代前端框架（如 Vue/React 渲染的评论框）
+    textarea.dispatchEvent(new Event('input', { bubbles: true }));
+    
+    const commentSection = document.getElementById('post-comment') || document.getElementById('footer');
+    if (commentSection) {
+      window.scrollTo({ top: commentSection.offsetTop - 80, behavior: 'smooth' });
+    }
+    
+    textarea.focus();
+    textarea.setSelectionRange(-1, -1);
+    document.getElementById('comment-tips')?.classList.add('show');
+  },
+};
+
+blogessay.changeTimeInEssay();
+blogessay.reflashEssayWaterFall();
