@@ -7,7 +7,7 @@
     <link>https://blogdev.sakurink.eu.org/</link>
     
     <image>
-      <url>https://blogdev.sakurink.eu.org/icon.png</url>
+      <url>https://blogdev.sakurink.eu.org/source/img/favicon.png</url>
       <title>Title</title>
       <link>https://blogdev.sakurink.eu.org/</link>
     </image>
@@ -24,13 +24,18 @@
       <guid>https://blogdev.sakurink.eu.org/posts/1243061423/</guid>
       <pubDate>Thu, 17 Jun 2021 04:33:04 GMT</pubDate>
       
+      
         
         
           
           
-      <description>&lt;link rel=&quot;stylesheet&quot;</description>
+          
+            
           
         
+      
+      
+      <description><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick Start Create a new post 1$ hexo new &quot;My New Post&quot; More info: Writing Run server 1$ hexo]]></description>
       
       
       
@@ -47,13 +52,16 @@
       <guid>https://blogdev.sakurink.eu.org/posts/750903161/</guid>
       <pubDate>Thu, 17 Jun 2021 04:33:04 GMT</pubDate>
       
+      
         
         
           
           
-      <description>&lt;link rel=&quot;stylesheet&quot;</description>
+          
+            
           
         
+      
       
       
       
@@ -70,13 +78,18 @@
       <guid>https://blogdev.sakurink.eu.org/posts/1243066710/</guid>
       <pubDate>Thu, 17 Jun 2021 04:33:04 GMT</pubDate>
       
+      
         
         
           
           
-      <description>&lt;link rel=&quot;stylesheet&quot;</description>
+          
+            
           
         
+      
+      
+      <description><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick Start Create a new post 1$ hexo new &quot;My New Post&quot; More info: Writing Run server 1$ hexo]]></description>
       
       
       
@@ -95,13 +108,18 @@
       <guid>https://blogdev.sakurink.eu.org/posts/1523763828/</guid>
       <pubDate>Thu, 17 Jun 2021 04:33:04 GMT</pubDate>
       
+      
         
         
           
           
-      <description>&lt;link rel=&quot;stylesheet&quot;</description>
+          
+            
           
         
+      
+      
+      <description><![CDATA[123]]></description>
       
       
       
