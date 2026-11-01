@@ -1,0 +1,147 @@
+/* ==========================================================================
+   scc-state.css · 控制台的「状态层」
+   --------------------------------------------------------------------------
+   这里只做一件事：把 <html data-scc-*> 上的状态翻译成样式。
+
+   为什么不再由 JS 直接改元素：
+   1. 首屏不跳 —— 属性由 head 里的引导脚本在首次绘制前写好，浏览器第一次
+      布局就是终态；以前是 defer 脚本跑完才补样式，用户会看到头部从 hero
+      收成 60px、灯笼迟到出现、字体换一次。
+   2. Pjax 免重放 —— Butterfly 的 pjax 只替换 #body-wrap / #rightside-config-*
+      / .js-pjax，属性挂在 documentElement 上，换页天然保留；CSS 选择器对
+      新节点同样生效，不需要任何「重放」逻辑。
+   3. 幂等 —— 样式是终值的函数，不存在「读当前 display 再翻转」这种会把状态
+      翻反的写法。
+
+   加载顺序：必须排在 fluent.css / console-fluent.css 之后（这里用 !important
+   保证覆盖，但顺序仍然重要）。
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. 首页大图（关闭后头部收成 60px，这是最大的一处「加载后布局跳动」）
+   -------------------------------------------------------------------------- */
+html[data-scc-index-img="off"] #site-info,
+html[data-scc-index-img="off"] #scroll-down {
+  display: none !important;
+}
+
+html[data-scc-index-img="off"] .full_page#page-header {
+  margin-bottom: 10px !important;
+  height: 60px !important;
+  background: 0 !important;
+}
+
+html[data-scc-index-img="off"] .full_page#page-header #nav {
+  background: rgba(255, 255, 255, .8) !important;
+  box-shadow: 0 5px 6px -5px rgba(133, 133, 133, .6) !important;
+}
+
+html[data-scc-index-img="off"] .full_page#page-header #nav a,
+html[data-scc-index-img="off"] .full_page#page-header #nav span.site-page,
+html[data-scc-index-img="off"] .full_page#page-header #nav .site-name {
+  color: var(--font-color) !important;
+  text-shadow: none !important;
+}
+
+html[data-scc-index-img="off"][data-theme="dark"] .full_page#page-header > #nav {
+  background: rgba(18, 18, 18, .8) !important;
+  box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0) !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. 春节灯笼（纯 CSS 动画，display:none 之后合成器不再跑，隐藏即等于关闭）
+   -------------------------------------------------------------------------- */
+html[data-scc-lantern="off"] #lantern {
+  display: none !important;
+}
+
+html[data-scc-lantern="left"] #lantern,
+html[data-scc-lantern="right"] #lantern {
+  display: block !important;
+}
+
+html[data-scc-lantern="left"] .lantern-box-1 {
+  left: -20px !important;
+  right: auto !important;
+}
+
+html[data-scc-lantern="left"] .lantern-box-2 {
+  left: 10px !important;
+  right: auto !important;
+}
+
+html[data-scc-lantern="right"] .lantern-box-1 {
+  left: auto !important;
+  right: -20px !important;
+}
+
+html[data-scc-lantern="right"] .lantern-box-2 {
+  left: auto !important;
+  right: -20px !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. 背景粒子（绘制循环由 universe.js 的 sccUniverse.start/stop 控制，
+      这里只负责让它不占位、不被合成）
+   -------------------------------------------------------------------------- */
+html[data-scc-universe="off"] #universe {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   3.5 页脚播放器
+   依赖（APlayer / Meting）是全局的，文章正文里的 <meting-js> 也要用；
+   可选的只是页脚这个实例，由 consolex.js 从 <template> 克隆出来。
+   Meting 会把 APlayer 的容器 appendChild 到 <meting-js> 内部，所以隐藏外层
+   容器就等于隐藏整个播放器（连 fixed 定位的后代一起不渲染）。
+   关闭用「暂停 + 隐藏」而不是销毁，原因写在 consolex.js 的 sccRemoveAplayer。
+   只认 #scc-footer-aplayer：文章里的 <meting-js> 不在这个容器里，不受影响。
+   -------------------------------------------------------------------------- */
+html[data-scc-aplayer="off"] #scc-footer-aplayer {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. 卡片材质：透明度与模糊度共用一个真源 --scc-card-alpha
+      alpha = 100 - 滑杆值。UI 上的「透明度」是透视程度，这里换算成不透明度。
+   -------------------------------------------------------------------------- */
+html[data-scc-card] #recent-posts .recent-post-item,
+html[data-scc-card] #content-inner > #post,
+html[data-scc-card] #content-inner > #page,
+html[data-scc-card] #content-inner > #archive,
+html[data-scc-card] #content-inner > #tag,
+html[data-scc-card] #content-inner > #category,
+html[data-scc-card] #aside-content > .card-widget,
+html[data-scc-card] #aside-content > .sticky_layout > .card-widget {
+  background-color: color-mix(in srgb, var(--tasseles-card-bg) var(--scc-card-alpha, 95%), transparent) !important;
+}
+
+/* 模糊只在「透明度真的低到能看见」时才开（见 consolex.js 的 sccUpdateThemeCardOpacity）。
+   具体规则留在 fluent.css 的卡片小节里（同一处维护），这里只负责写属性。 */
+
+/* --------------------------------------------------------------------------
+   5. 字体（原实现是 defer 之后写 body.style.fontFamily，文字会重排一次）
+   -------------------------------------------------------------------------- */
+html[data-scc-font] body {
+  font-family: var(--global-font);
+}
+
+/* --------------------------------------------------------------------------
+   6. 「模糊不可见」的提示：只在用户真的去动模糊滑块时出现，平时不占视觉
+   -------------------------------------------------------------------------- */
+.scc-tip {
+  display: none;
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--f-text-3, #8a8f98);
+}
+
+html[data-scc-frosted="off"] .slider-container:hover .scc-tip,
+html[data-scc-frosted="off"] .slider-container:focus-within .scc-tip {
+  display: block;
+}
+
+html[data-scc-frosted="off"] #themeCardBlurRange {
+  opacity: .5;
+}
