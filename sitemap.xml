@@ -4,7 +4,7 @@
   <url>
     <loc>https://blogdev.sakurink.eu.org/cookies/index.html</loc>
     
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-13</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -155,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://blogdev.sakurink.eu.org/posts/750903161/</loc>
+    <loc>https://blogdev.sakurink.eu.org/posts/1243066710/</loc>
     
     <lastmod>2021-06-17</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://blogdev.sakurink.eu.org/posts/1243066710/</loc>
+    <loc>https://blogdev.sakurink.eu.org/posts/750903161/</loc>
     
     <lastmod>2021-06-17</lastmod>
     
@@ -175,7 +175,7 @@
 
   <url>
     <loc>https://blogdev.sakurink.eu.org/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -183,7 +183,7 @@
   
   <url>
     <loc>https://blogdev.sakurink.eu.org/tags/tag1/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
